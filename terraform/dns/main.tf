@@ -5,7 +5,7 @@ resource "godaddy-dns_record" "a_record" {
   name     = each.key
   type     = "A"
   data     = each.value
-  ttl      = 1
+  ttl      = 600
 }
 
 resource "godaddy-dns_record" "cname_record" {
@@ -14,5 +14,5 @@ resource "godaddy-dns_record" "cname_record" {
   name     = each.key
   type     = "CNAME"
   data     = each.value
-  ttl      = 1
+  ttl      = 600
 }
