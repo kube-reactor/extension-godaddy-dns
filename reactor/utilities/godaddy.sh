@@ -3,7 +3,7 @@ function godaddy_dns_records () {
   DNS_A_RECORDS=""
   for host in $(dns_hosts); do
     for ip in $(dns_ip); do
-      local a_host="${host%".$CLOUDFLARE_DOMAIN"}"
+      local a_host="${host%".$GODADDY_DOMAIN"}"
       local a_record="\"${a_host}\":\"${ip}\""
       if [ ! "$DNS_A_RECORDS" ]; then
         DNS_A_RECORDS="${DNS_A_RECORDS}${a_record}"
@@ -17,7 +17,7 @@ function godaddy_dns_records () {
   DNS_CNAME_RECORDS=""
   for host in $(dns_hosts); do
     for hostname in $(dns_hostname); do
-      local cname_host="${host%".$CLOUDFLARE_DOMAIN"}"
+      local cname_host="${host%".$GODADDY_DOMAIN"}"
       local cname_record="\"${cname_host}\":\"${hostname}\""
       if [ ! "$DNS_CNAME_RECORDS" ]; then
         DNS_CNAME_RECORDS="${DNS_CNAME_RECORDS}${cname_record}"
