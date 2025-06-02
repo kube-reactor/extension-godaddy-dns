@@ -6,10 +6,11 @@
 # Project Directories
 #
 export __godaddy_dns_extension_dir="${2}"
-export __godaddy_dns_terraform_dir="${__godaddy_dns_extension_dir}/terraform"
-export __godaddy_dns_project_dir="${__godaddy_dns_terraform_dir}/dns"
 
 if [ "${DNS_PROVIDER:-}" == "godaddy" ]; then
+  export __godaddy_dns_terraform_dir="${__godaddy_dns_extension_dir}/terraform"
+  export __godaddy_dns_project_dir="${__godaddy_dns_terraform_dir}/dns"
+
   export GODADDY_API_KEY="${GODADDY_API_KEY:-}"
   export GODADDY_API_SECRET="${GODADDY_API_SECRET:-}"
   export GODADDY_DOMAIN="${GODADDY_DOMAIN:-}"
