@@ -1,8 +1,13 @@
 
 function godaddy_dns_records () {
   DNS_A_RECORDS=""
+  DNS_CNAME_RECORDS=""
+
   for host in $(dns_hosts); do
     for ip in $(dns_ip); do
+      if check_private_ip "$ip"; then
+        ip="$(get_public_ip)"
+      fi
       local a_host="${host%".$GODADDY_DOMAIN"}"
       local a_record="\"${a_host}\":\"${ip}\""
       if [ ! "$DNS_A_RECORDS" ]; then
@@ -14,7 +19,6 @@ function godaddy_dns_records () {
   done
   export TF_VAR_a_records="{${DNS_A_RECORDS}}"
 
-  DNS_CNAME_RECORDS=""
   for host in $(dns_hosts); do
     for hostname in $(dns_hostname); do
       local cname_host="${host%".$GODADDY_DOMAIN"}"
